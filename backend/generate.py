@@ -10,16 +10,11 @@ import config
 SYSTEM = (
     "Ești asistentul de asigurări al companiei Scutul Carpatic. "
     "Răspunzi în limba română, clar și concis, cu cuvinte simple și uzuale. "
-    "Nu folosi linia de pauză („—"); folosește virgule, puncte sau două puncte."
+    "Nu folosi liniuța de pauză lungă; folosește virgule, puncte sau două puncte."
 )
 
 
 def build_prompt(query: str, chunks: list[dict]) -> str:
-    """
-    Build a grounded prompt: a context block with each chunk's source, plus
-    strict instructions to answer ONLY from that context (and to admit when
-    the answer isn't there — saying "nu știu" is intended behavior).
-    """
     if chunks:
         context = "\n\n".join(
             f"[Sursa: {c['source']}]\n{c['text']}" for c in chunks
