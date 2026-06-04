@@ -27,18 +27,10 @@ FRONTEND_DIR = os.path.join(os.path.dirname(__file__), "..", "frontend")
 
 class QueryRequest(BaseModel):
     query: str
-    use_bm25: bool | None = None
-    use_reranker: bool | None = None
 
 
 @app.post("/query")
 def query(req: QueryRequest):
-    # UI toggles drive the ablation live.
-    if req.use_bm25 is not None:
-        config.USE_BM25 = req.use_bm25
-    if req.use_reranker is not None:
-        config.USE_RERANKER = req.use_reranker
-
     # pipeline.answer_question must return {"answer": str, "chunks": [...]}
     return pipeline.answer_question(req.query)
 
