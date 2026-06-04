@@ -1,4 +1,4 @@
-# Asigurări Scutul Carpatic S.A. — Informații generale
+# Asigurări Scutul Carpatic S.A.: Informații generale
 
 ## Despre noi
 
@@ -14,11 +14,11 @@ de Autoritatea de Supraveghere Financiară (ASF).
 
 ## Linii de produs
 
-1. **RCA** — Răspundere Civilă Auto obligatorie (vezi `rca-conditii.md`)
-2. **CASCO** — asigurare facultativă auto (vezi `casco-conditii.md`)
-3. **Asigurarea Locuinței** — facultativă, complementară PAD (vezi `locuinta-conditii.md`)
-4. **Asigurare de Viață** — protecție și economisire (vezi `viata-conditii.md`)
-5. **Asigurare de Sănătate** — abonament medical privat (vezi `sanatate-conditii.md`)
+1. **RCA**: Răspundere Civilă Auto obligatorie (vezi `rca-conditii.md`)
+2. **CASCO**: asigurare facultativă auto (vezi `casco-conditii.md`)
+3. **Asigurarea Locuinței**: facultativă, complementară PAD (vezi `locuinta-conditii.md`)
+4. **Asigurare de Viață**: protecție și economisire (vezi `viata-conditii.md`)
+5. **Asigurare de Sănătate**: abonament medical privat (vezi `sanatate-conditii.md`)
 
 ## Program de lucru și contact
 

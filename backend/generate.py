@@ -8,8 +8,9 @@ model first, e.g.:  ollama pull llama3.1
 import config
 
 SYSTEM = (
-    "Ești asistentul de polițe al companiei de asigurări Scutul Carpatic. "
-    "Răspunzi în limba română, clar și concis."
+    "Ești asistentul de asigurări al companiei Scutul Carpatic. "
+    "Răspunzi în limba română, clar și concis, cu cuvinte simple și uzuale. "
+    "Nu folosi linia de pauză („—"); folosește virgule, puncte sau două puncte."
 )
 
 

@@ -1,4 +1,4 @@
-# Condiții RCA — Răspundere Civilă Auto Obligatorie
+# Condiții RCA: Răspundere Civilă Auto Obligatorie
 
 Emitent: Asigurări Scutul Carpatic S.A.
 
@@ -6,7 +6,7 @@ Emitent: Asigurări Scutul Carpatic S.A.
 
 Asigurarea RCA acoperă **prejudiciile produse terților** prin accidente de
 circulație, din vina conducătorului vehiculului asigurat. RCA NU acoperă
-pagubele la propriul vehicul al asiguratului — pentru acestea este nevoie de
+pagubele la propriul vehicul al asiguratului, pentru acestea este nevoie de
 CASCO (vezi `casco-conditii.md`).
 
 RCA acoperă:
@@ -46,7 +46,7 @@ poliția. Ambii conducători completează și semnează formularul.
 RCA nu plătește pentru:
 - pagubele la vehiculul propriu al vinovatului;
 - evenimente produse în timpul comiterii unui furt sau a unei infracțiuni;
-- conducerea fără permis valabil sau sub influența alcoolului/drogurilor —
+- conducerea fără permis valabil sau sub influența alcoolului/drogurilor;
   asigurătorul despăgubește terțul, apoi recuperează suma de la vinovat (regres);
 - competiții și curse auto neautorizate.
 

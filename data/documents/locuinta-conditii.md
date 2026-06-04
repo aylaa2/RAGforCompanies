@@ -1,4 +1,4 @@
-# Condiții — Asigurarea Locuinței
+# Condiții: Asigurarea Locuinței
 
 Emitent: Asigurări Scutul Carpatic S.A.
 
@@ -18,7 +18,7 @@ rămâne obligatorie și se încheie separat.
 **Structura (clădirea):**
 - incendiu, trăsnet, explozie, cădere de corpuri;
 - furtună, grindină, greutatea zăpezii, inundații din precipitații;
-- avarii la instalații (apă, canalizare, încălzire) — inclusiv țevi sparte;
+- avarii la instalații (apă, canalizare, încălzire), inclusiv țevi sparte;
 - cutremur și alunecări de teren (peste plafonul PAD).
 
 **Conținutul (bunurile din locuință):**

@@ -1,5 +1,5 @@
 /* ===================================================================
-   Scutul Carpatic — front-end logic
+   Scutul Carpatic front-end logic
    Ask    : one /query call, full pipeline (semantic + bm25 + reranker)
    Compare: three /query calls with different toggles, side by side
    =================================================================== */

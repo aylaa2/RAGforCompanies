@@ -1,24 +1,24 @@
-# Condiții — Asigurare de Viață
+# Condiții: Asigurare de Viață
 
 Emitent: Asigurări Scutul Carpatic S.A.
 
 ## 1. Tipuri de polițe
 
-- **Term Life (protecție pură)** — „Scutul Vieții Term”: acoperire pe o perioadă
+- **Term Life (protecție pură)**: „Scutul Vieții Term”: acoperire pe o perioadă
   determinată (de ex. 10, 20 sau 30 de ani). Plătește suma asigurată doar dacă
   decesul survine în perioada acoperită. Primă mică, fără componentă de economisire.
-- **Viață cu acumulare (unit-linked)** — „Scutul Vieții Invest”: combină
+- **Viață cu acumulare (unit-linked)**: „Scutul Vieții Invest”: combină
   protecția cu investiția. O parte din primă merge în fonduri de investiții;
   valoarea contului depinde de evoluția pieței și nu este garantată.
 
 ## 2. Riscuri acoperite
 
-- **Deces** din orice cauză (boală sau accident) — risc de bază.
-- **Deces din accident** — sumă suplimentară (clauză opțională, de regulă dublă).
-- **Invaliditate permanentă** din accident sau boală — clauză opțională.
-- **Afecțiuni grave** (infarct, AVC, cancer etc.) — plată anticipată la diagnostic,
+- **Deces** din orice cauză (boală sau accident), risc de bază.
+- **Deces din accident**: sumă suplimentară (clauză opțională, de regulă dublă).
+- **Invaliditate permanentă** din accident sau boală, clauză opțională.
+- **Afecțiuni grave** (infarct, AVC, cancer etc.), plată anticipată la diagnostic,
   clauză opțională.
-- **Scutire de plată a primelor** în caz de invaliditate — clauză opțională.
+- **Scutire de plată a primelor** în caz de invaliditate, clauză opțională.
 
 ## 3. Beneficiari
 

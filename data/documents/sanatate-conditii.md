@@ -1,4 +1,4 @@
-# Condiții — Asigurare de Sănătate (abonament medical privat)
+# Condiții: Asigurare de Sănătate (abonament medical privat)
 
 Emitent: Asigurări Scutul Carpatic S.A.
 
@@ -10,11 +10,11 @@ persoanelor fizice și angajatorilor (pachete de grup).
 
 ## 2. Pachete
 
-- **Ambulatoriu** — consultații la medic de familie și specialiști, analize de
+- **Ambulatoriu**: consultații la medic de familie și specialiști, analize de
   laborator, investigații imagistice (ecografie, radiografie), control anual.
-- **Ambulatoriu + Spitalizare** — pachetul de mai sus plus intervenții
+- **Ambulatoriu + Spitalizare**: pachetul de mai sus plus intervenții
   chirurgicale și spitalizare în rețeaua privată.
-- **Premium** — toate cele de mai sus plus stomatologie (sublimită anuală),
+- **Premium**: toate cele de mai sus plus stomatologie (sublimită anuală),
   recuperare medicală, a doua opinie medicală internațională și decont pentru
   servicii în afara rețelei (reimbursement).
 

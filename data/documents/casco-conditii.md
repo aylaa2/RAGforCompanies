@@ -1,4 +1,4 @@
-# Condiții CASCO — Asigurare Facultativă Auto
+# Condiții CASCO: Asigurare Facultativă Auto
 
 Emitent: Asigurări Scutul Carpatic S.A.
 

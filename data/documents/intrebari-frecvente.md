@@ -46,7 +46,7 @@ avarii la instalații) și sume mai mari.
 
 **Ce e perioada de carență?**
 Intervalul de la începutul poliței în care anumite riscuri nu sunt încă
-acoperite — de ex. 6 luni pentru decesul din boală, 30 de zile pentru servicii
+acoperite, de exemplu 6 luni pentru decesul din boală, 30 de zile pentru servicii
 medicale ambulatorii. Urgențele și accidentele nu au, de regulă, carență.
 
 **Pot schimba beneficiarul la asigurarea de viață?**
