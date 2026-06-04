@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Scutul Carpatic · Întreabă despre polițe</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    max-width: 720px; margin: 0 auto; padding: 40px 20px 80px;
+    color: #1f2328; background: #fafafa; line-height: 1.5;
+  }
+  h1 { font-size: 24px; margin: 0 0 4px; }
+  .sub { color: #6b7280; margin: 0 0 28px; font-size: 14px; }
+
+  form { display: flex; gap: 8px; }
+  input[type=text] {
+    flex: 1; padding: 12px 14px; font-size: 15px;
+    border: 1px solid #d0d7de; border-radius: 8px; background: #fff;
+  }
+  input[type=text]:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px #2563eb22; }
+  button {
+    padding: 12px 20px; font-size: 15px; font-weight: 600; cursor: pointer;
+    border: 0; border-radius: 8px; background: #2563eb; color: #fff;
+  }
+  button:hover { background: #1d4ed8; }
+  button:disabled { opacity: .5; cursor: default; }
+
+  #out { margin-top: 32px; }
+  .answer { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 18px 20px; }
+  .answer h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: #6b7280; margin: 0 0 8px; }
+  .answer p { margin: 0; font-size: 16px; white-space: pre-wrap; }
+
+  .sources { margin-top: 20px; }
+  .sources h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: #6b7280; margin: 0 0 10px; }
+  details { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 10px 14px; margin-bottom: 8px; }
+  summary { cursor: pointer; font-size: 14px; font-weight: 600; }
+  details p { margin: 10px 0 0; font-size: 14px; color: #4b5563; }
+
+  .muted { color: #6b7280; font-size: 14px; }
+  .error { color: #b91c1c; }
+</style>
+</head>
+<body>
+  <h1>🛡️ Scutul Carpatic</h1>
+  <p class="sub">Întreabă despre polițe — RCA, CASCO, locuință, viață, sănătate. Răspunsul vine din documentele de asigurare, cu surse.</p>
+
+  <form id="form">
+    <input type="text" id="q" placeholder="Care este limita de despăgubire la RCA?" autocomplete="off" />
+    <button type="submit" id="ask">Întreabă</button>
+  </form>
+
+  <div id="out"></div>
+
+<script>
+  const form = document.getElementById("form");
+  const out = document.getElementById("out");
+  const askBtn = document.getElementById("ask");
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, m =>
+      ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[m]));
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const q = document.getElementById("q").value.trim();
+    if (!q) return;
+    askBtn.disabled = true;
+    out.innerHTML = '<p class="muted">Caut răspunsul…</p>';
+    try {
+      const r = await fetch("/query", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query: q }),
+      });
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      const d = await r.json();
+
+      let h = '<div class="answer"><h2>Răspuns</h2><p>' + esc(d.answer || "(fără răspuns)") + "</p></div>";
+      const cs = d.chunks || [];
+      if (cs.length) {
+        h += '<div class="sources"><h2>Surse</h2>';
+        cs.forEach(c => {
+          h += "<details><summary>" + esc(c.source || "sursă") + "</summary><p>" + esc(c.text || "") + "</p></details>";
+        });
+        h += "</div>";
+      }
+      out.innerHTML = h;
+    } catch (err) {
+      out.innerHTML = '<p class="error">Eroare: ' + esc(err.message) +
+        '</p><p class="muted">Ai rulat <code>python backend/ingest.py</code> și ai pornit serverul?</p>';
+    } finally {
+      askBtn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>

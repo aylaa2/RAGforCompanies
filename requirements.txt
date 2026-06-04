@@ -1,0 +1,16 @@
+# Core RAG stack
+chromadb                # embedded vector store (semantic half)
+sentence-transformers   # embeddings + cross-encoder reranker
+rank_bm25               # keyword search (BM25)
+
+# API (also serves the UI — no Node needed)
+fastapi
+uvicorn[standard]
+
+# TODO: add your LLM client, e.g. one of:
+# anthropic
+# openai
+# (or a local runner like ollama / llama-cpp-python)
+
+# TODO: add document loaders for the file types you support, e.g.:
+# pypdf                 # if you ingest PDFs
