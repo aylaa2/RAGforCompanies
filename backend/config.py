@@ -6,26 +6,22 @@ flip them, re-run the same questions, show how retrieval quality
 changes as each stage is added.
 """
 
-# --- Ablation toggles -------------------------------------------------
-# Semantic (dense) search is always on — it's the baseline.
-USE_BM25 = False        # add keyword search + fuse with semantic (RRF)
-USE_RERANKER = False    # add cross-encoder reranking on the fused list
+import os
 
-# --- Model names ------------------------------------------------------
-# TODO: pick your models. Suggested starting points below.
-EMBEDDING_MODEL = "BAAI/bge-small-en-v1.5"          # sentence-transformers
-RERANKER_MODEL = "cross-encoder/ms-marco-MiniLM-L-6-v2"
-LLM_MODEL = "TODO"                                   # whatever you have access to
+USE_BM25 = True         # add keyword search + fuse with semantic (RRF)
+USE_RERANKER = True     # add cross-encoder reranking on the fused list
 
-# --- Retrieval params -------------------------------------------------
-TOP_K_RETRIEVE = 10     # how many chunks each retriever pulls
+EMBEDDING_MODEL = "intfloat/multilingual-e5-base"    # sentence-transformers, multilingual
+RERANKER_MODEL = "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"  # light multilingual cross-encoder (fast)
+LLM_MODEL = "qwen2.5:3b"                             # local, via Ollama (ollama pull qwen2.5:3b)
+
+TOP_K_RETRIEVE = 6      # how many chunks each retriever pulls (lower = faster rerank)
 TOP_K_FINAL = 4         # how many chunks to feed the LLM after reranking
 
-# --- Chunking params --------------------------------------------------
 CHUNK_SIZE = 500        # characters (or tokens — your call)
 CHUNK_OVERLAP = 50
 
-# --- Paths (relative to repo root; run backend from there) ------------
-DOCUMENTS_DIR = "data/documents"
-STORAGE_DIR = "storage"
+_PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DOCUMENTS_DIR = os.path.join(_PROJECT_ROOT, "data", "documents")
+STORAGE_DIR = os.path.join(_PROJECT_ROOT, "storage")
 COLLECTION_NAME = "rag_demo"

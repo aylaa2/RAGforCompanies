@@ -15,6 +15,7 @@ import os
 
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 import config
@@ -23,6 +24,13 @@ import pipeline
 app = FastAPI(title="RAG Demo")
 
 FRONTEND_DIR = os.path.join(os.path.dirname(__file__), "..", "frontend")
+
+# Serve the split-out CSS/JS (frontend/assets/*) at /assets/*.
+app.mount(
+    "/assets",
+    StaticFiles(directory=os.path.join(FRONTEND_DIR, "assets")),
+    name="assets",
+)
 
 
 class QueryRequest(BaseModel):

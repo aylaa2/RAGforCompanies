@@ -7,10 +7,7 @@ rank_bm25               # keyword search (BM25)
 fastapi
 uvicorn[standard]
 
-# TODO: add your LLM client, e.g. one of:
-# anthropic
-# openai
-# (or a local runner like ollama / llama-cpp-python)
+# LLM client — local generation via Ollama (ollama serve + ollama pull llama3.1)
+ollama
 
-# TODO: add document loaders for the file types you support, e.g.:
-# pypdf                 # if you ingest PDFs
+# Documents are Markdown/plain text, read directly — no PDF loader needed.

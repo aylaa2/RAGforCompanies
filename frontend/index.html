@@ -3,98 +3,77 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Scutul Carpatic · Întreabă despre polițe</title>
-<style>
-  * { box-sizing: border-box; }
-  body {
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    max-width: 720px; margin: 0 auto; padding: 40px 20px 80px;
-    color: #1f2328; background: #fafafa; line-height: 1.5;
-  }
-  h1 { font-size: 24px; margin: 0 0 4px; }
-  .sub { color: #6b7280; margin: 0 0 28px; font-size: 14px; }
-
-  form { display: flex; gap: 8px; }
-  input[type=text] {
-    flex: 1; padding: 12px 14px; font-size: 15px;
-    border: 1px solid #d0d7de; border-radius: 8px; background: #fff;
-  }
-  input[type=text]:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px #2563eb22; }
-  button {
-    padding: 12px 20px; font-size: 15px; font-weight: 600; cursor: pointer;
-    border: 0; border-radius: 8px; background: #2563eb; color: #fff;
-  }
-  button:hover { background: #1d4ed8; }
-  button:disabled { opacity: .5; cursor: default; }
-
-  #out { margin-top: 32px; }
-  .answer { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 18px 20px; }
-  .answer h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: #6b7280; margin: 0 0 8px; }
-  .answer p { margin: 0; font-size: 16px; white-space: pre-wrap; }
-
-  .sources { margin-top: 20px; }
-  .sources h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: #6b7280; margin: 0 0 10px; }
-  details { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 10px 14px; margin-bottom: 8px; }
-  summary { cursor: pointer; font-size: 14px; font-weight: 600; }
-  details p { margin: 10px 0 0; font-size: 14px; color: #4b5563; }
-
-  .muted { color: #6b7280; font-size: 14px; }
-  .error { color: #b91c1c; }
-</style>
+<title>Scutul Carpatic · Asistent asigurări</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css" />
 </head>
 <body>
-  <h1>🛡️ Scutul Carpatic</h1>
-  <p class="sub">Întreabă despre polițe — RCA, CASCO, locuință, viață, sănătate. Răspunsul vine din documentele de asigurare, cu surse.</p>
+<div class="blobs" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
 
-  <form id="form">
-    <input type="text" id="q" placeholder="Care este limita de despăgubire la RCA?" autocomplete="off" />
-    <button type="submit" id="ask">Întreabă</button>
-  </form>
+<div class="shell">
+  <header>
+    <a class="brand" href="#">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2.5 4 5.2v6.1c0 4.7 3.2 8 8 10.2 4.8-2.2 8-5.5 8-10.2V5.2L12 2.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      </span>
+      <span class="brand-txt"><span class="name">Scutul Carpatic</span><span class="sub">asistentul tău de asigurări</span></span>
+    </a>
+    <nav id="nav">
+      <button class="active" data-view="ask">Întreabă</button>
+      <button data-view="compare">Compară etapele</button>
+    </nav>
+  </header>
 
-  <div id="out"></div>
+  <!-- ============================ ÎNTREABĂ ============================ -->
+  <section class="view active" id="view-ask">
+    <div class="hero">
+      <p class="eyebrow">Răspunsuri cu surse, direct din documente</p>
+      <h1>Întreabă despre <em>asigurarea ta</em></h1>
+      <p class="lede">RCA, CASCO, locuință, viață sau sănătate — răspundem folosind doar condițiile din documente și îți arătăm exact de unde provine informația.</p>
+    </div>
 
-<script>
-  const form = document.getElementById("form");
-  const out = document.getElementById("out");
-  const askBtn = document.getElementById("ask");
+    <form class="ask" id="askForm">
+      <div class="field"><span class="pr" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg></span>
+        <input class="q" id="q" placeholder="Care este limita de despăgubire la RCA?" autocomplete="off" /></div>
+      <button class="btn" id="ask" type="submit">Întreabă</button>
+    </form>
+    <div class="chips" id="chips">
+      <button>Care este limita de despăgubire la RCA?</button>
+      <button>Ce acoperă CASCO și ce nu?</button>
+      <button>Cât durează plata daunei?</button>
+      <button>Ce este franșiza?</button>
+    </div>
+    <div id="askOut" aria-live="polite"></div>
+  </section>
 
-  function esc(s) {
-    return String(s).replace(/[&<>"']/g, m =>
-      ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[m]));
-  }
+  <!-- ============================ COMPARĂ ============================ -->
+  <section class="view" id="view-compare">
+    <div class="hero">
+      <p class="eyebrow">Compară etapele de căutare</p>
+      <h1>Ce schimbă <em>fiecare etapă</em>?</h1>
+      <p class="lede">Aceeași întrebare, prin trei variante deodată. Pornim de la căutarea semantică, adăugăm BM25, apoi reranker-ul — și vezi cum se schimbă sursele și cum devine răspunsul mai precis.</p>
+    </div>
+    <form class="ask" id="cmpForm">
+      <div class="field"><span class="pr" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg></span>
+        <input class="q" id="cq" value="Care este limita de despăgubire la RCA?" autocomplete="off" /></div>
+      <button class="btn" id="crun" type="submit">Compară</button>
+    </form>
+    <div class="cmp-grid" id="cmpGrid"></div>
+    <div class="legend" id="legend" hidden>
+      <span><i class="sw-new"></i>sursă nouă la această etapă</span>
+      <span><i class="sw-up"></i>urcată mai sus</span>
+      <span><i class="sw-keep"></i>rămasă la fel</span>
+    </div>
+  </section>
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const q = document.getElementById("q").value.trim();
-    if (!q) return;
-    askBtn.disabled = true;
-    out.innerHTML = '<p class="muted">Caut răspunsul…</p>';
-    try {
-      const r = await fetch("/query", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query: q }),
-      });
-      if (!r.ok) throw new Error("HTTP " + r.status);
-      const d = await r.json();
+  <footer>
+    <span>Scutul Carpatic S.A.</span>
+    <span>demo tehnic RAG · datele sunt sintetice</span>
+  </footer>
+</div>
 
-      let h = '<div class="answer"><h2>Răspuns</h2><p>' + esc(d.answer || "(fără răspuns)") + "</p></div>";
-      const cs = d.chunks || [];
-      if (cs.length) {
-        h += '<div class="sources"><h2>Surse</h2>';
-        cs.forEach(c => {
-          h += "<details><summary>" + esc(c.source || "sursă") + "</summary><p>" + esc(c.text || "") + "</p></details>";
-        });
-        h += "</div>";
-      }
-      out.innerHTML = h;
-    } catch (err) {
-      out.innerHTML = '<p class="error">Eroare: ' + esc(err.message) +
-        '</p><p class="muted">Ai rulat <code>python backend/ingest.py</code> și ai pornit serverul?</p>';
-    } finally {
-      askBtn.disabled = false;
-    }
-  });
-</script>
+<script src="/assets/app.js"></script>
 </body>
 </html>
