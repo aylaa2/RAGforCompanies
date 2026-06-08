@@ -8,8 +8,10 @@ changes as each stage is added.
 
 import os
 
-USE_BM25 = True         # add keyword search + fuse with semantic (RRF)
-USE_RERANKER = True     # add cross-encoder reranking on the fused list
+USE_BM25 = True          # add keyword search + fuse with semantic (RRF)
+USE_RERANKER = True      # add cross-encoder reranking on the fused list
+USE_ITERATIVE = True     # iterative self-correction loop (model can ask "CAUTĂ: X")
+ITERATIVE_MAX_ITERS = 3  # max retrieval rounds in the iterative loop
 
 EMBEDDING_MODEL = "intfloat/multilingual-e5-base"    # sentence-transformers, multilingual
 RERANKER_MODEL = "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"  # light multilingual cross-encoder (fast)

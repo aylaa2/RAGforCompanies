@@ -1,11 +1,12 @@
 {
-  "generated": false,
+  "generated": true,
   "n_questions": 12,
-  "configs": ["Semantic", "+ BM25", "+ Reranker"],
+  "judge": "Claude (LLM-as-judge), approximating RAGAS metrics",
+  "configs": ["Semantic", "+ BM25", "+ Reranker", "+ Iterativ"],
   "metrics": [
-    { "key": "Precizie context", "vals": [0.61, 0.70, 0.88] },
-    { "key": "Acoperire context", "vals": [0.72, 0.83, 0.85] },
-    { "key": "Fidelitate", "vals": [0.79, 0.84, 0.92] },
-    { "key": "Relevanță răspuns", "vals": [0.74, 0.81, 0.89] }
+    { "key": "Precizie context", "vals": [0.71, 0.72, 0.84, 0.83] },
+    { "key": "Acoperire context", "vals": [0.96, 0.85, 0.97, 0.98] },
+    { "key": "Fidelitate", "vals": [0.93, 0.95, 0.97, 0.95] },
+    { "key": "Relevanță răspuns", "vals": [0.83, 0.69, 0.84, 0.88] }
   ]
 }

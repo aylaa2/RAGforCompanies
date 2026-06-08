@@ -35,10 +35,20 @@ app.mount(
 
 class QueryRequest(BaseModel):
     query: str
+    use_bm25: bool | None = None
+    use_reranker: bool | None = None
+    use_iterative: bool | None = None
 
 
 @app.post("/query")
 def query(req: QueryRequest):
+    # Optional toggles let the Compare view drive the ablation live.
+    if req.use_bm25 is not None:
+        config.USE_BM25 = req.use_bm25
+    if req.use_reranker is not None:
+        config.USE_RERANKER = req.use_reranker
+    if req.use_iterative is not None:
+        config.USE_ITERATIVE = req.use_iterative
     # pipeline.answer_question must return {"answer": str, "chunks": [...]}
     return pipeline.answer_question(req.query)
 

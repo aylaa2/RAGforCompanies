@@ -34,11 +34,12 @@ RESULTS = os.path.join(_ROOT, "frontend", "assets", "eval_results.json")
 # "openai" = reliable & fast, needs OPENAI_API_KEY.
 JUDGE = "ollama"
 
-# The three ablation configs, as (label, USE_BM25, USE_RERANKER).
+# The ablation configs, as (label, USE_BM25, USE_RERANKER, USE_ITERATIVE).
 CONFIGS = [
-    ("Semantic", False, False),
-    ("+ BM25", True, False),
-    ("+ Reranker", True, True),
+    ("Semantic", False, False, False),
+    ("+ BM25", True, False, False),
+    ("+ Reranker", True, True, False),
+    ("+ Iterativ", True, True, True),
 ]
 
 # RAGAS metric -> friendly Romanian label used in the chart.
@@ -67,10 +68,11 @@ def _judge():
     )
 
 
-def run_config(label, use_bm25, use_reranker, test_set):
+def run_config(label, use_bm25, use_reranker, use_iterative, test_set):
     """Run the pipeline for one config over the whole test set."""
     config.USE_BM25 = use_bm25
     config.USE_RERANKER = use_reranker
+    config.USE_ITERATIVE = use_iterative
     rows = {"question": [], "answer": [], "contexts": [], "ground_truth": []}
     for i, item in enumerate(test_set, 1):
         print(f"  [{label}] {i}/{len(test_set)}: {item['question'][:50]}...")
@@ -102,8 +104,8 @@ def main():
 
     llm, emb = _judge()
     per_config = {}
-    for label, bm25, rer in CONFIGS:
-        rows = run_config(label, bm25, rer, test_set)
+    for label, bm25, rer, itr in CONFIGS:
+        rows = run_config(label, bm25, rer, itr, test_set)
         print(f"  Punctez cu RAGAS [{label}]...")
         per_config[label] = score(rows, llm, emb)
 
@@ -112,13 +114,13 @@ def main():
     for key, romanian in METRIC_LABELS.items():
         metrics_out.append({
             "key": romanian,
-            "vals": [round(per_config[label].get(key, 0.0), 3) for label, _, _ in CONFIGS],
+            "vals": [round(per_config[label].get(key, 0.0), 3) for label, *_ in CONFIGS],
         })
 
     out = {
         "generated": True,
         "n_questions": len(test_set),
-        "configs": [label for label, _, _ in CONFIGS],
+        "configs": [label for label, *_ in CONFIGS],
         "metrics": metrics_out,
     }
     os.makedirs(os.path.dirname(RESULTS), exist_ok=True)

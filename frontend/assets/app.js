@@ -9,10 +9,11 @@ function esc(s) {
     ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[m]));
 }
 
-async function postQuery(query, useBm25, useReranker) {
+async function postQuery(query, useBm25, useReranker, useIterative) {
   const body = { query };
   if (useBm25 !== undefined) body.use_bm25 = useBm25;
   if (useReranker !== undefined) body.use_reranker = useReranker;
+  if (useIterative !== undefined) body.use_iterative = useIterative;
   const r = await fetch("/query", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -81,9 +82,10 @@ document.getElementById("chips").addEventListener("click", (e) => {
 
 /* ---------------- Compare ---------------- */
 const CONFIGS = [
-  { name: "Semantic",     bm25: false, rer: false, stages: [1, 0, 0] },
-  { name: "+ BM25",       bm25: true,  rer: false, stages: [1, 1, 0] },
-  { name: "+ Reranker",   bm25: true,  rer: true,  stages: [1, 1, 1] },
+  { name: "Semantic",   bm25: false, rer: false, iter: false, stages: [1, 0, 0, 0] },
+  { name: "+ BM25",     bm25: true,  rer: false, iter: false, stages: [1, 1, 0, 0] },
+  { name: "+ Reranker", bm25: true,  rer: true,  iter: false, stages: [1, 1, 1, 0] },
+  { name: "+ Iterativ", bm25: true,  rer: true,  iter: true,  stages: [1, 1, 1, 1] },
 ];
 const cmpForm = document.getElementById("cmpForm");
 const cmpGrid = document.getElementById("cmpGrid");
@@ -126,7 +128,7 @@ async function compare() {
   try {
     for (let i = 0; i < CONFIGS.length; i++) {
       const c = CONFIGS[i];
-      const d = await postQuery(q, c.bm25, c.rer);   // sequential: avoids racing the global config
+      const d = await postQuery(q, c.bm25, c.rer, c.iter);   // sequential: avoids racing the global config
       const chunks = d.chunks || [];
       const prev = i > 0 ? sourceLists[i - 1] : null;
       document.getElementById("ans" + i).outerHTML =
@@ -145,7 +147,7 @@ async function compare() {
 cmpForm.addEventListener("submit", (e) => { e.preventDefault(); compare(); });
 
 /* ---------------- Evaluate (RAGAS results -> chart) ---------------- */
-const EV_COLORS = ["#b9b1c2", "#12b3a6", "#ff5d73"];  // semantic · +bm25 · +reranker
+const EV_COLORS = ["#b9b1c2", "#12b3a6", "#ff5d73", "#7c5cff"];  // semantic · +bm25 · +reranker · +iterativ
 const EV_INK = "#241f2e", EV_FAINT = "#a59cae", EV_LINE = "#e2dccf";
 const EV_FONT = "Inter, sans-serif";
 
