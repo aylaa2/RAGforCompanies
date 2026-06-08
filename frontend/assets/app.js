@@ -143,3 +143,65 @@ async function compare() {
   }
 }
 cmpForm.addEventListener("submit", (e) => { e.preventDefault(); compare(); });
+
+/* ---------------- Evaluate (RAGAS results -> chart) ---------------- */
+const EV_COLORS = ["#b9b1c2", "#12b3a6", "#ff5d73"];  // semantic · +bm25 · +reranker
+const EV_INK = "#241f2e", EV_FAINT = "#a59cae", EV_LINE = "#e2dccf";
+const EV_FONT = "Inter, sans-serif";
+
+async function renderEval() {
+  let data;
+  try {
+    const r = await fetch("/assets/eval_results.json");
+    data = await r.json();
+  } catch (e) { return; }
+
+  // KPI cards: best precision, best faithfulness, and reranker uplift.
+  const m = data.metrics, last = data.configs.length - 1;
+  const get = (label) => (m.find(x => x.key === label) || { vals: [0, 0, 0] }).vals;
+  const cp = get("Precizie context"), fa = get("Fidelitate");
+  const cards = [
+    { k: "Precizie context", v: cp[last].toFixed(2), d: "+" + Math.round((cp[last] - cp[0]) * 100) + "% vs. Semantic", good: true },
+    { k: "Fidelitate", v: fa[last].toFixed(2), d: "+" + Math.round((fa[last] - fa[0]) * 100) + "% vs. Semantic", good: true },
+    { k: "Variante comparate", v: data.configs.length, d: data.configs.join(" · "), good: true },
+  ];
+  document.getElementById("evCards").innerHTML = cards.map(c =>
+    '<div class="card"><div class="k">' + esc(c.k) + '</div><div class="v">' + esc(String(c.v)) +
+    '</div><div class="d up-good">' + esc(c.d) + '</div></div>').join("");
+
+  document.getElementById("barChart").innerHTML = barChart(data);
+  document.getElementById("evTable").innerHTML = evalTable(data);
+}
+
+function barChart(data) {
+  const W = 640, H = 270, padL = 34, padB = 42, padT = 10, padR = 12;
+  const groups = data.metrics, gn = groups.length, cn = data.configs.length;
+  const gw = (W - padL - padR) / gn, bw = gw * 0.64 / cn, gap = (gw - bw * cn) / 2;
+  const y = (v) => padT + (H - padT - padB) * (1 - v);
+  let s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="max-width:' + W + 'px">';
+  [0, .25, .5, .75, 1].forEach(t => { const yy = y(t);
+    s += '<line x1="' + padL + '" x2="' + (W - padR) + '" y1="' + yy + '" y2="' + yy + '" stroke="' + EV_LINE + '"/>' +
+         '<text x="' + (padL - 8) + '" y="' + (yy + 3) + '" fill="' + EV_FAINT + '" font-size="9" text-anchor="end" font-family="' + EV_FONT + '">' + t.toFixed(2) + '</text>'; });
+  groups.forEach((g, gi) => { const gx = padL + gi * gw + gap;
+    g.vals.forEach((v, ci) => { const x = gx + ci * bw, yy = y(v), hh = (H - padT - padB) - (yy - padT);
+      s += '<rect x="' + (x + 2) + '" y="' + yy + '" width="' + (bw - 3) + '" height="' + hh + '" rx="3" fill="' + EV_COLORS[ci % EV_COLORS.length] + '"/>'; });
+    s += '<text x="' + (gx + bw * cn / 2) + '" y="' + (H - padB + 18) + '" fill="' + EV_INK + '" font-size="10" text-anchor="middle" font-family="' + EV_FONT + '">' + esc(g.key) + '</text>'; });
+  return s + "</svg>";
+}
+
+function evalTable(data) {
+  let h = "<table><thead><tr><th>Variantă</th>" +
+    data.metrics.map(x => "<th>" + esc(x.key) + "</th>").join("") + "</tr></thead><tbody>";
+  data.configs.forEach((c, ci) => {
+    h += "<tr" + (ci === data.configs.length - 1 ? ' class="best"' : "") + "><td>" + esc(c) + "</td>";
+    data.metrics.forEach(x => {
+      const v = x.vals[ci], base = x.vals[0];
+      const delta = ci > 0 ? '<span class="delta">+' + (v - base).toFixed(2) + "</span>" : "";
+      h += '<td><span class="cell">' + delta + v.toFixed(2) + "</span></td>";
+    });
+    h += "</tr>";
+  });
+  return h + "</tbody></table>";
+}
+
+renderEval();

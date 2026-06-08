@@ -11,3 +11,8 @@ uvicorn[standard]
 ollama
 
 # Documents are Markdown/plain text, read directly — no PDF loader needed.
+
+# Evaluation only (backend/evaluate.py). Optional — install when you run RAGAS.
+ragas
+datasets
+langchain-ollama

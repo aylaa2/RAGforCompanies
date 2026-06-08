@@ -23,6 +23,7 @@
     <nav id="nav">
       <button class="active" data-view="ask">Întreabă</button>
       <button data-view="compare">Compară etapele</button>
+      <button data-view="evaluate">Evaluează</button>
     </nav>
   </header>
 
@@ -68,10 +69,25 @@
     </div>
   </section>
 
-  <footer>
-    <span>Scutul Carpatic S.A.</span>
-    <span>demo tehnic RAG · datele sunt sintetice</span>
-  </footer>
+  <!-- ============================ EVALUEAZĂ ============================ -->
+  <section class="view" id="view-evaluate">
+    <div class="hero">
+      <p class="eyebrow">Evaluare cu RAGAS</p>
+      <h1>Cât de <em>bine</em> răspunde?</h1>
+    </div>
+    <div class="cards" id="evCards"></div>
+    <div class="panel">
+      <h3>Scoruri pe variantă</h3>
+      <p class="panel-sub">mai mare = mai bine · scor între 0 și 1</p>
+      <div id="barChart"></div>
+      <div class="chartlegend"><span><i class="c0"></i>Semantic</span><span><i class="c1"></i>+ BM25</span><span><i class="c2"></i>+ Reranker</span></div>
+    </div>
+    <div class="panel">
+      <h3>Toate rezultatele</h3>
+      <p class="panel-sub">Δ față de varianta Semantic</p>
+      <div id="evTable"></div>
+    </div>
+  </section>
 </div>
 
 <script src="/assets/app.js"></script>

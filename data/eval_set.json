@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Care este limita de despăgubire la RCA?",
+    "ground_truth": "La RCA, limita este de 6.070.000 euro pentru pagube materiale și 12.245.000 euro pentru vătămări corporale sau deces, per eveniment.",
+    "source": "rca-conditii.md"
+  },
+  {
+    "question": "Acoperă RCA pagubele la propria mașină?",
+    "ground_truth": "Nu. RCA acoperă doar pagubele produse terților. Pentru pagubele la propriul vehicul este nevoie de CASCO.",
+    "source": "rca-conditii.md"
+  },
+  {
+    "question": "Ce este sistemul bonus-malus?",
+    "ground_truth": "Sistemul care ajustează tariful RCA: fiecare an fără daună urcă o clasă spre bonus, iar fiecare daună plătită coboară două clase spre malus.",
+    "source": "rca-conditii.md"
+  },
+  {
+    "question": "În cât timp se plătește dauna la CASCO?",
+    "ground_truth": "La CASCO, despăgubirea se plătește în maximum 15 zile lucrătoare de la depunerea dosarului complet.",
+    "source": "casco-conditii.md"
+  },
+  {
+    "question": "Ce acoperă pachetul CASCO Premium?",
+    "ground_truth": "CASCO Premium include tot din pachetul Confort, plus vehicul de înlocuire, reparație în service autorizat al mărcii și fără franșiză pentru daune de geam.",
+    "source": "casco-conditii.md"
+  },
+  {
+    "question": "Când se consideră daună totală la CASCO?",
+    "ground_truth": "Se consideră daună totală când costul reparației depășește 75% din suma asigurată.",
+    "source": "casco-conditii.md"
+  },
+  {
+    "question": "Ce acoperă asigurarea de locuință în plus față de PAD?",
+    "ground_truth": "Asigurarea facultativă de locuință acoperă mai multe riscuri (incendiu, furt, avarii la instalații) și sume asigurate mai mari decât PAD, care acoperă doar cutremur, inundații și alunecări de teren.",
+    "source": "locuinta-conditii.md"
+  },
+  {
+    "question": "Cât durează perioada de carență pentru decesul din boală la asigurarea de viață?",
+    "ground_truth": "Perioada de carență pentru decesul din boală este de 6 luni de la intrarea în vigoare a poliței.",
+    "source": "viata-conditii.md"
+  },
+  {
+    "question": "Pot schimba beneficiarul la asigurarea de viață?",
+    "ground_truth": "Da, beneficiarul poate fi schimbat oricând, printr-o cerere scrisă către asigurător.",
+    "source": "viata-conditii.md"
+  },
+  {
+    "question": "Acoperă asigurarea de sănătate stomatologia?",
+    "ground_truth": "Da, dar doar pachetul Premium, cu o limită de maximum 1.500 lei pe an.",
+    "source": "sanatate-conditii.md"
+  },
+  {
+    "question": "Care este perioada de carență pentru spitalizare la asigurarea de sănătate?",
+    "ground_truth": "Pentru spitalizare și intervenții programate, perioada de carență este de 90 de zile.",
+    "source": "sanatate-conditii.md"
+  },
+  {
+    "question": "Cum pot plăti prima de asigurare?",
+    "ground_truth": "Prima se poate plăti integral sau în 2, 4 ori 12 rate, prin card, transfer bancar, debit direct sau la parteneri. Plata integrală aduce o reducere de 5% la produsele facultative, dar nu și la RCA.",
+    "source": "intrebari-frecvente.md"
+  }
+]

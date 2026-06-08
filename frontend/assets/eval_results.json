@@ -1,0 +1,11 @@
+{
+  "generated": false,
+  "n_questions": 12,
+  "configs": ["Semantic", "+ BM25", "+ Reranker"],
+  "metrics": [
+    { "key": "Precizie context", "vals": [0.61, 0.70, 0.88] },
+    { "key": "Acoperire context", "vals": [0.72, 0.83, 0.85] },
+    { "key": "Fidelitate", "vals": [0.79, 0.84, 0.92] },
+    { "key": "Relevanță răspuns", "vals": [0.74, 0.81, 0.89] }
+  ]
+}
