@@ -1,0 +1,13 @@
+# Core RAG stack
+chromadb                # embedded vector store (semantic half)
+sentence-transformers   # embeddings + cross-encoder reranker
+rank_bm25               # keyword search (BM25)
+
+# API (also serves the UI — no Node needed)
+fastapi
+uvicorn[standard]
+
+# LLM client — local generation via Ollama (ollama serve + ollama pull llama3.1)
+ollama
+
+# Documents are Markdown/plain text, read directly — no PDF loader needed.

@@ -1,0 +1,14 @@
+[
+  {
+    "question": "Ce acoperă asigurarea CASCO?",
+    "ground_truth": "CASCO acoperă pagubele la propriul vehicul, inclusiv coliziune, furt, incendiu, fenomene naturale și vandalism."
+  },
+  {
+    "question": "Pot folosi constatarea amiabilă dacă au fost rănite persoane?",
+    "ground_truth": "Nu. Constatarea amiabilă se folosește doar pentru accidente ușoare, fără victime, cu două vehicule implicate."
+  },
+  {
+    "question": "Se aplică reducerea de 5% pentru plata integrală la RCA?",
+    "ground_truth": "Nu. Reducerea de 5% se aplică la produsele facultative, dar nu și la RCA."
+  }
+]
