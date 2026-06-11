@@ -20,7 +20,7 @@ LLM_MODEL = "qwen2.5:3b"                             # local, via Ollama (ollama
 TOP_K_RETRIEVE = 6      # how many chunks each retriever pulls (lower = faster rerank)
 TOP_K_FINAL = 4         # how many chunks to feed the LLM after reranking
 
-CHUNK_SIZE = 500        # characters (or tokens — your call)
+CHUNK_SIZE = 500        # characters (or tkens — your call)
 CHUNK_OVERLAP = 50
 
 _PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
